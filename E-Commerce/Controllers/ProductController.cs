@@ -30,7 +30,8 @@ namespace E_Commerce.Controllers
                                    Id = p.Id,
                                    Name = p.Name,
                                    Price = p.Price,
-                                   CategoryName = c.Name
+                                   CategoryName = c.Name,
+                                   CategoryId = c.Id
                                }).ToList();
             // Searching product by category
             if (searchString == null)
@@ -156,6 +157,16 @@ namespace E_Commerce.Controllers
                 TempData["error"] = "Product not found.";
                 return View(product);
             }
+        }
+
+        [Route("ProductByCategory")]
+        public async Task<IActionResult> ProductsByCategory(int categoryId)
+        {
+            var products = await _productRepository.GetProductByCategory(categoryId);
+            var category = _categoryRepository.GetFirstOrDefault(x => x.Id == categoryId);
+            ViewBag.Category = category.Name;
+
+            return View(products);
         }
 
     }

@@ -1,0 +1,31 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "ProductsByCategory";
+}
+
+<div class="container">
+    <div class="pt-3 pb-3 col-12 row">
+        <h2 class="text-dark"><b>Products of Category (@ViewBag.Category)</b></h2>
+    </div>
+    <br />
+    <table id="myTable" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr class="text-center">
+                <th>Product Id</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr class="text-center">
+                    <td>@obj.Id</td>
+                    <td>@obj.Name</td>
+                    <td>@obj.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
