@@ -41,6 +41,7 @@
             <tr class="text-center">
                 <th>Product Id</th>
                 <th>Product Name</th>
+                <th>Description</th>
                 <th>Product Price</th>
                 <th>Product Category</th>
                 <th>Operations</th>
@@ -52,6 +53,7 @@
                 <tr class="text-center">
                     <td>@obj.Id</td>
                     <td>@obj.Name</td>
+                    <td>@obj.Description</td>
                     <td>@obj.Price</td>
                     <td>
                         <a asp-controller="Product" asp-action="ProductsByCategory" asp-route-categoryId="@obj.CategoryId"

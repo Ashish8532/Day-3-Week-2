@@ -31,7 +31,8 @@ namespace E_Commerce.Controllers
                                    Name = p.Name,
                                    Price = p.Price,
                                    CategoryName = c.Name,
-                                   CategoryId = c.Id
+                                   CategoryId = c.Id,
+                                   Description = p.Description
                                }).ToList();
             // Searching product by category
             if (searchString == null)

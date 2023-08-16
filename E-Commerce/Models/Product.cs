@@ -21,6 +21,9 @@ namespace E_Commerce.Models
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
 
+        [Required(ErrorMessage = "Description is required!")]
+        public string Description { get; set; }
+
         [NotMapped]
         public string? CategoryName { get; set; }
     }
