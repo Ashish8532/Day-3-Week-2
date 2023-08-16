@@ -22,8 +22,45 @@ namespace E_Commerce.Controllers
         public async Task<IActionResult> Index(string? searchString, string sortOrder)
         {
             var products = await _productRepository.GetAll();
-            
-            return View(products);
+            var category = await _categoryRepository.GetAll();
+            var productList = (from p in products
+                               join c in category on p.CategoryId equals c.Id
+                               select new Product
+                               {
+                                   Id = p.Id,
+                                   Name = p.Name,
+                                   Price = p.Price,
+                                   CategoryName = c.Name
+                               }).ToList();
+            // Searching product by category
+            if (searchString == null)
+            {
+                productList = productList;
+            }
+            else
+            {
+                ViewBag.SearchStr = searchString;
+                productList = productList.Where(p =>
+                              p.CategoryName.ToLower().Contains(searchString.ToLower())).ToList();
+            }
+
+
+            //Sorting product bu Price or Name.
+            ViewData["PriceOrder"] = string.IsNullOrEmpty(sortOrder) ? "price_desc" : "";
+            ViewData["NameOrder"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            switch (sortOrder)
+            {
+                case "price_desc":
+                    productList = productList.OrderByDescending(a => a.Price).ToList();
+                    break;
+                case "name_desc":
+                    productList = productList.OrderByDescending(a => a.Name).ToList();
+                    break;
+                default:
+                    productList = productList.OrderBy(a => a.Name).ToList();
+                    break;
+            }
+            return View(productList);
         }
 
         [Route("Create")]

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_Commerce.Models
 {
@@ -19,5 +20,8 @@ namespace E_Commerce.Models
         [Required(ErrorMessage = "Category is required!")]
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
+
+        [NotMapped]
+        public string? CategoryName { get; set; }
     }
 }
