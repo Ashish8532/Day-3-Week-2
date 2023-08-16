@@ -1,0 +1,28 @@
+﻿@using E_Commerce.ViewModels;
+@model DetailsVM
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Model.DisplayMessage</h1>
+
+@if (Model.Product != null)
+{
+    <div>
+        <dl>
+            <dt>Id</dt>
+            <dd>@Model.Product.Id</dd>
+            <dt>Name</dt>
+            <dd>@Model.Product.Name</dd>
+            <dt>Price</dt>
+            <dd>@Model.Product.Price</dd>
+            <dt>Category</dt>
+            <dd>@Model.CategoryName</dd>
+        </dl>
+    </div>
+}
+else
+{
+    <p>Product not found.</p>
+}
+

@@ -16,7 +16,8 @@ namespace E_Commerce.Models
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
+        [Required(ErrorMessage = "Category is required!")]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
     }
 }
